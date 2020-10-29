@@ -39,7 +39,7 @@
 
 (setq org-roam-directory "~/org")
 (setq org-roam-title-sources '((title) alias))
-(setq mmuldoon/agenda-subdirs '("/private-notes/" "/todo/" "/mmuldoon-work/" "/org-roam/" "/blue-notes/"))
+(setq mmuldoon/agenda-subdirs '("/private-notes/" "/todo/" "/mmuldoon-work/" "/org-roam/" "/blue-notes/" "/cs/" "/aero/"))
 (setq org-agenda-files
       (mapcar #'(lambda(subdir)
                   (concat org-directory subdir)) mmuldoon/agenda-subdirs))
@@ -110,15 +110,22 @@ to offer.  It defaults to `ocv/capture-prmt-history'."
         ("m" "Meeting" entry (file+datetree ,(concat org-directory "/mmuldoon-work/meetings.org"))
          "* Topic: %?\n** Type: %(ocv/prmt \"Type\" 'type nil 'ocv/capture-prmt-type-history)\n** Purpose:\n** Present:\n- Mickey\n** Notes:\n")
         ("p" "Private meeting" entry (file+datetree ,(concat org-directory "/private-notes/meetings.org")) "* Topic: %?\n** Type: %(ocv/prmt \"Type\" 'type nil 'ocv/capture-prmt-type-history)\n** Purpose:\n** Present:\n- Mickey\n** Notes:\n")
-        ("n" "Blue Note" entry
-         (file (lambda ()(concat org-directory "/blue-notes/" (read-string "Filename: "))))
-         "* %?\n %U")
+        ;; ("n" "Blue Note" entry
+        ;;  (file (lambda ()(concat org-directory "/blue-notes/" (read-string "Filename: "))))
+        ;;  "* %?\n %U")
         ))
 
 ;;; ("b" "Blue note" entry (file ,(mmuldoon/new-org-file (concat org-directory "/blue-notes/"))))
 
 (require 'company-org-roam)
 (push 'company-org-roam company-backends)
+
+(setq org-roam-capture-templates
+      `(("d" "default" plain (function org-roam-capture--get-point)
+         "%?"
+         :file-name "${title}"
+         :head "#+TITLE: ${title}"
+         :unnarrowed t)))
 
 (setq projectile-project-search-path '("~/Documents/2_Areas/OSCAR/Oscar_Code" "~/Documents/2_Areas/Ochoa/" "~/Documents/2_Areas/Ripley/Ripley_Code" "~/Documents/2_Areas/Dex/Dex_Code" "~/Documents/6_Notes"))
 

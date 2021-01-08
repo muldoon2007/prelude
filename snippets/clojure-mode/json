@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: clj read json
+# key: cjson
+# --
+(ns clojure-interactive.core
+  (:require
+   [clojure.data.json :as json]
+   [clojure.string :as s]))
+
+(defn attrs-to-query-string
+  []
+  (let [attrs (json/read-json (slurp "resources/windchill-attrs.txt"))]
+    (s/join "," attrs)))

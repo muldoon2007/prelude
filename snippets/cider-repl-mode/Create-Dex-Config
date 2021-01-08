@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Create-Dex-Config
+# key: DexConfig
+# --
+(def mm-config (get-config))
+(def mm-config-merged (merge mm-config (first (:programs mm-config))))

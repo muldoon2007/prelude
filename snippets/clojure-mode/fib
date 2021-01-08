@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: clj fibonacci
+# key: cfib
+# --
+(#(take %
+((fn rfib [a b]
+(lazy-seq (cons a (rfib b (+ a b)))))
+1 1)) 6)

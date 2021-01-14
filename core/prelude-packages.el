@@ -165,6 +165,7 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
     ("\\.groovy\\'" groovy-mode groovy-mode)
     ("\\.haml\\'" haml-mode haml-mode)
     ("\\.hs\\'" haskell-mode haskell-mode)
+    ("\\.jl\\'" julia-mode julia-mode)
     ("\\.json\\'" json-mode json-mode)
     ("\\.kt\\'" kotlin-mode kotlin-mode)
     ("\\.kv\\'" kivy-mode kivy-mode)
@@ -200,6 +201,12 @@ PACKAGE is installed only if not already present.  The file is opened in MODE."
   (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
   (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode)))
 
+;; same with adoc-mode
+(when (package-installed-p 'adoc-mode)
+  (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
+  (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode)))
+
+;; and pkgbuild-mode
 (when (package-installed-p 'pkgbuild-mode)
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . pkgbuild-mode)))
 

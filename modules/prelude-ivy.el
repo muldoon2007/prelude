@@ -35,9 +35,11 @@
 (prelude-require-packages '(ivy swiper counsel))
 
 ;;; Ivy
+;;
 ;; ivy is a powerful alternative to the popular ido-mode
 
 (require 'ivy)
+(require 'diminish)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -45,14 +47,16 @@
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 
-(setq projectile-completion-system 'ivy)
+(diminish 'ivy-mode)
 
 ;;; Swiper
+;;
 ;; swiper provides enhanced buffer search
 
 (global-set-key "\C-s" 'swiper)
 
 ;;; Counsel
+;;
 ;; counsel supercharges a lot of commands with some ivy magic
 
 (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -62,7 +66,7 @@
 (global-set-key (kbd "<f1> l") 'counsel-find-library)
 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c g") 'counsel-git) ; will override the keybinding for `magit-file-dispatch'
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c a") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
